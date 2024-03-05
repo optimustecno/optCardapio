@@ -1,0 +1,1 @@
+export const URL_DA_API = process.env["NEXT_PUBLIC_URL_DA_API"]||""
