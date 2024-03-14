@@ -16,9 +16,7 @@ const config: Config = {
         },
         extend: {
             backgroundImage: {
-                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "gradient-conic":
-                    "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+                fundoGradient: "linear-gradient(160deg,var(--tw-gradient-stops))"
             },
             borderWidth: {
                 "1": "1px"

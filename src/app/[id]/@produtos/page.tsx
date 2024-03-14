@@ -26,11 +26,11 @@ export default async function Produtos(props: { params: { id: string } }) {
                 .map(([grupo, produtos]) => {
                     return (
                         <Grupo grupo={grupo} key={grupo}>
-                            {produtos.map((produto, index) => {
+                            {produtos.map((produto) => {
                                 return (
                                     <ProdutoItem
                                         produto={produto}
-                                        key={index}
+                                        key={+produto.ordem}
                                     />
                                 );
                             })}

@@ -14,16 +14,16 @@ type Props = {
 };
 
 export default async function LayoutPrincipal({
-    params: parametros,
+    params,
     capa,
     grupos,
     produtos,
 }: Props) {
     const perfilRequest = await axios(
-        `${URL_DA_API}/PerfilCardapio/${parametros.id}`
+        `${URL_DA_API}/PerfilCardapio/${params.id}`
     );
     if (!perfilRequest.data) return notFound();
-    const perfil = perfilRequest.data;
+    const perfil: PerfilCardapio = perfilRequest.data;
     return (
         <ProvedorDeTema perfil={perfil}>
             <Fundo />

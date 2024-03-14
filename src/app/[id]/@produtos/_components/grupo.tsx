@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ReactNode } from "react";
 import clsx from "clsx";
 
@@ -17,7 +16,7 @@ function ButtonLink(props: {
     className?: string;
 }) {
     return (
-        <Link
+        <a
             href={props.href}
             className={clsx(
                 "py-2 flex items-center rounded-md justify-center content-center bg-botao hover:scale-110 transition-all duration-200 w-52 text-center",
@@ -25,7 +24,7 @@ function ButtonLink(props: {
             )}
         >
             {props.children}
-        </Link>
+        </a>
     );
 }
 
@@ -36,7 +35,7 @@ export function Grupo(props: { grupo: string; children: ReactNode }) {
             <div className="flex flex-col w-full h-[50vh]">{props.children}</div>
             <div className="flex justify-between gap-5">
                 <ButtonLink href="#grupos">Índice</ButtonLink>
-                <ButtonLink href="#0">Fechar Cardápio</ButtonLink>
+                <ButtonLink href="#inicio">Fechar Cardápio</ButtonLink>
             </div>
         </div>
     );
