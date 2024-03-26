@@ -27,9 +27,9 @@ export default async function LayoutPrincipal({
     return (
         <ProvedorDeTema perfil={perfil}>
             <Fundo />
-            <div className="size-full">{capa}</div>
-            <div className="size-full">{grupos}</div>
-            <div className="size-full">{produtos}</div>
+            {capa}
+            {grupos}
+            {produtos}
         </ProvedorDeTema>
     );
 }

@@ -2,8 +2,8 @@ import { axios } from "@/utils/geral";
 import clsx from "clsx";
 import { notFound } from "next/navigation";
 import type { Produto } from "@/types";
-import { ProdutoItem } from "./_components/produto";
-import { Grupo } from "./_components/grupo";
+import { ProdutoItem } from "@/components/produto";
+import { Grupo } from "@/components/grupo";
 
 export default async function Produtos(props: { params: { id: string } }) {
     const ProdutosRequest = await axios<Produto[]>(

@@ -1,15 +1,6 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
 
-// export function GrupoAntigo(props: { grupo: string; children: ReactNode }) {
-//     return (
-//         <div className="p-4 w-3/4" id={props.grupo}>
-//             <h2 className="text-lg">.:{props.grupo}:.</h2>
-//             <div className="flex flex-col">{props.children}</div>
-//         </div>
-//     );
-// }
-
 function ButtonLink(props: {
     href: string;
     children: ReactNode;
@@ -31,7 +22,7 @@ function ButtonLink(props: {
 export function Grupo(props: { grupo: string; children: ReactNode }) {
     return (
         <div className="size-full p-[5%]" id={props.grupo}>
-            <h2 className="text-lg">.:{props.grupo}:.</h2>
+            <h2 className="text-lg mb-8">.:{props.grupo}:.</h2>
             <div className="flex flex-col w-full h-[50vh]">{props.children}</div>
             <div className="flex justify-between gap-5">
                 <ButtonLink href="#grupos">Índice</ButtonLink>

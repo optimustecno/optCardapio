@@ -4,7 +4,7 @@ import clsx from "clsx";
 export function ProdutoItem({ produto }: { produto: Produto }) {
     return (
         <div
-            className={clsx("", produto.destaque == "1" && "text-destaque")}
+            className={clsx("mb-2", produto.destaque == "1" && "text-destaque")}
             key={produto.cod_produto}
         >
             <div className="flex w-full items-center">
