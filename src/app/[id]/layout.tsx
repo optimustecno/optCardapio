@@ -19,9 +19,9 @@ export default async function LayoutPrincipal({
     grupos,
     produtos,
 }: Props) {
-    const perfilRequest = await axios(
+    const perfilRequest = await axios<PerfilCardapio>(
         `${URL_DA_API}/PerfilCardapio/${params.id}`
-    );
+    ).catch(() => notFound());
     if (!perfilRequest.data) return notFound();
     const perfil: PerfilCardapio = perfilRequest.data;
     return (

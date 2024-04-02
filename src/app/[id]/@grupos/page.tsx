@@ -1,13 +1,18 @@
 import { Grupo } from "@/types";
-import {axios} from '@/utils/geral'
+import { axios } from "@/utils/geral";
 import { notFound } from "next/navigation";
 
-export default async function Grupos(props: {params:{id: string}}) {
-    const GrupoRequest = await axios<Grupo[]>(`/GruposProd/${props.params.id}`);
+export default async function Grupos(props: { params: { id: string } }) {
+    const GrupoRequest = await axios<Grupo[]>(
+        `/GruposProd/${props.params.id}`
+    ).catch(() => notFound());
     const grupos = GrupoRequest.data;
     if (!grupos) return notFound();
     return (
-        <div className="flex items-center pt-10 size-full flex-col gap-5" id="grupos">
+        <div
+            className="flex items-center pt-10 size-full flex-col gap-5"
+            id="grupos"
+        >
             {grupos.sort().map((grupo, index) => {
                 return (
                     <a

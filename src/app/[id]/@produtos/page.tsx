@@ -8,7 +8,7 @@ import { Grupo } from "@/components/grupo";
 export default async function Produtos(props: { params: { id: string } }) {
     const ProdutosRequest = await axios<Produto[]>(
         `/Produtos/${props.params.id}`
-    );
+    ).catch(() => notFound());
     const Produtos = ProdutosRequest.data;
     if (!Produtos) return notFound();
     const MapaProduto: { [key: string]: Produto[] } = {};
