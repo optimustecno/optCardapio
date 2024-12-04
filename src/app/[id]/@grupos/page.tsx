@@ -4,16 +4,23 @@ import { notFound } from "next/navigation";
 
 export default async function Grupos(props: { params: { id: string } }) {
     const GrupoRequest = await axios<Grupo[]>(
-        `/GruposProd/${props.params.id}`
-    ).catch(() => notFound());
+        `/GruposProd/${(await props.params).id}`
+    ).catch((err) => {
+        console.log("Error");
+        console.error(err);
+        notFound();
+    });
     const grupos = GrupoRequest.data;
-    if (!grupos) return notFound();
+    if (!grupos) {
+        console.log("Nenhum grupo encontrado");
+        return notFound();
+    }
     return (
         <div
-            className="flex items-center pt-10 size-full flex-col gap-5"
+            className="flex items-center pt-10 min-w-full min-h-full flex-col gap-5"
             id="grupos"
         >
-            {grupos.sort().map((grupo, index) => {
+            {grupos.map((grupo, index) => {
                 return (
                     <a
                         href={`#${grupo.grupo}`}

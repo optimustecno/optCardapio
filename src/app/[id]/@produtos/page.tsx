@@ -7,22 +7,28 @@ import { Grupo } from "@/components/grupo";
 
 export default async function Produtos(props: { params: { id: string } }) {
     const ProdutosRequest = await axios<Produto[]>(
-        `/Produtos/${props.params.id}`
-    ).catch(() => notFound());
+        `/ProdutosCardapio/${(await props.params).id}`
+    ).catch((err) => {
+        console.log("Error")
+        console.error(err);
+        notFound();
+    });
     const Produtos = ProdutosRequest.data;
-    if (!Produtos) return notFound();
+    if (!Produtos) {
+        console.log("Nenhum produto encontrado");
+        return notFound()
+    };
     const MapaProduto: { [key: string]: Produto[] } = {};
     for (const produto of Produtos) {
         // Mapeia cada produto para um grupo
         // usando um dicionario de listas
-        MapaProduto[produto.grupo] = (
-            MapaProduto[produto.grupo] || []
-        ).concat([produto]);
+        MapaProduto[produto.grupo] = (MapaProduto[produto.grupo] || []).concat([
+            produto,
+        ]);
     }
     return (
-        <div className="flex items-center flex-col">
+        <div className="flex items-center flex-col min-h-full min-w-full">
             {Object.entries(MapaProduto)
-                .sort()
                 .map(([grupo, produtos]) => {
                     return (
                         <Grupo grupo={grupo} key={grupo}>

@@ -10,3 +10,7 @@ html,
 body {
     @apply size-full;
 }
+
+* {
+    box-sizing: border-box;
+}

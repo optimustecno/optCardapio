@@ -11,18 +11,30 @@ type Props = {
     grupos: ReactNode;
     produtos: ReactNode;
     capa: ReactNode;
+    saida: ReactNode;
 };
 
 export default async function LayoutPrincipal({
-    params,
+    params: parms,
     capa,
     grupos,
     produtos,
+    saida,
 }: Props) {
+    const params = await parms;
+    if (params.id == "favicon.ico") {
+        return <></>;
+    }
     const perfilRequest = await axios<PerfilCardapio>(
         `${URL_DA_API}/PerfilCardapio/${params.id}`
-    ).catch(() => notFound());
-    if (!perfilRequest.data) return notFound();
+    ).catch((err) => {
+        console.error(err);
+        return notFound();
+    });
+    if (!perfilRequest.data) {
+        console.error("Nenhuma informação sobre ele encontrada.")
+        return notFound();
+    }
     const perfil: PerfilCardapio = perfilRequest.data;
     return (
         <ProvedorDeTema perfil={perfil}>
@@ -30,6 +42,7 @@ export default async function LayoutPrincipal({
             {capa}
             {grupos}
             {produtos}
+            {saida}
         </ProvedorDeTema>
     );
 }
